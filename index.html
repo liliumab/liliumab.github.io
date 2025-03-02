@@ -19,5 +19,25 @@
     <p class="p2">joakim.liljeqvist @ gmail.com</p>
     <p class="p2">0735 111 777</p>
     <p class="p2">peace out</p>
+     <div class="crypto-container">
+        <div id="btc-price" class="p2">Bitcoin: Laddar...</div>
+        <div id="eth-price" class="p2">Ethereum: Laddar...</div>
+    </div>
+      <script>
+        async function fetchCryptoPrices() {
+            try {
+                let response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+                let data = await response.json();
+                
+                document.getElementById('btc-price').innerText = `Bitcoin: $${data.bitcoin.usd}`;
+                document.getElementById('eth-price').innerText = `Ethereum: $${data.ethereum.usd}`;
+            } catch (error) {
+                console.error('Fel vid hämtning av kryptopriser:', error);
+            }
+        }
+        
+        fetchCryptoPrices();
+        setInterval(fetchCryptoPrices, 10000); // Uppdatera var 10:e sekund
+    </script>
   </body>
 </html>
