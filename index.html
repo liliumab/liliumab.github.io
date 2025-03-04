@@ -40,6 +40,14 @@
         fetchCryptoPrices();
         setInterval(fetchCryptoPrices, 10000); // Uppdatera var 10:e sekund
     </script>
+    <br>
+        <button onclick="visaNummer()">Visa Nummer</button>
+    <div class="p2">42</div>
 
+    <script>
+        function visaNummer() {
+            document.querySelector(".p2").style.display = "block";
+        }
+    </script>
   </body>
 </html>
