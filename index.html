@@ -38,5 +38,13 @@
         fetchCryptoPrices();
         setInterval(fetchCryptoPrices, 10000); // Uppdatera var 10:e sekund
     </script>
+    <button onclick="visaNummer()">Visa längden på den kinesiska medeldrulen</button>
+    <div id="nummer">8 cm</div>
+
+    <script>
+        function visaNummer() {
+            document.getElementById("nummer").style.display = "block";
+        }
+    </script>
   </body>
 </html>
