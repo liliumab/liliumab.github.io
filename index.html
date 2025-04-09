@@ -46,6 +46,38 @@
         setInterval(fetchCryptoPrices, 10000); // Uppdatera var 10:e sekund
     </script>
     <br>
+  <div>
+    <h2>S&P 500: <span id="sp500">Laddar...</span></h2>
+    <h2>OMXS30: <span id="omxs30">Laddar...</span></h2>
+    <h2>Investor B: <span id="investor">Laddar...</span></h2>
+  </div>
+
+  <script>
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'DIN_API_NYCKEL_HÄR',
+        'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
+      }
+    };
+
+    async function fetchIndexData(symbol, elementId) {
+      try {
+        const response = await fetch(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=${symbol}&region=SE`, options);
+        const data = await response.json();
+        const price = data.price.regularMarketPrice.raw;
+        document.getElementById(elementId).textContent = price + ' ' + data.price.currency;
+      } catch (error) {
+        console.error(error);
+        document.getElementById(elementId).textContent = 'Fel vid hämtning';
+      }
+    }
+
+    fetchIndexData('^GSPC', 'sp500'); // S&P 500 (USA)
+    fetchIndexData('^OMX', 'omxs30'); // OMXS30 (Sverige)
+    fetchIndexData('INVE-B.ST', 'investor'); // Investor B (Sverige)
+  </script>
+    <br>
         <button onclick="visaNummer()">Click me</button>
     <div class="p3">Hi</div>
 <br>
